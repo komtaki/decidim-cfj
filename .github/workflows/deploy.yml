@@ -121,4 +121,4 @@ jobs:
           cd deployments
           cp ${EB_ENVIRONMENT_NAME}/00_options.config .ebextensions/00_options.config
           sed -i -e "s|{RepositoryName}|$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG|g" Dockerrun.aws.json
-          eb deploy ${EB_ENVIRONMENT_NAME} --timeout=20
+          eb deploy ${EB_ENVIRONMENT_NAME} --timeout=20 --process

@@ -12,6 +12,7 @@ RUN apk update \
         postgresql-dev \
         tzdata \
         zip \
+        supervisor \
     && cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 
 ENV YARN_VERSION=v1.22.5
@@ -41,6 +42,8 @@ WORKDIR $APP_HOME
 
 COPY Gemfile Gemfile.lock ./
 
+COPY ./etc/supervisord.conf /etc/supervisord.conf
+
 COPY . $APP_HOME
 
 # bundle install
@@ -64,4 +67,5 @@ ENTRYPOINT ["entrypoint"]
 
 EXPOSE 3000
 
-CMD ["./bin/rails", "s", "-b", "0.0.0.0"]
+# supervisor 起動
+CMD ["/usr/bin/supervisord"]
