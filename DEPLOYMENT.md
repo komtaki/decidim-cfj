@@ -92,7 +92,6 @@ bundle install
 
 手順書の[手順3](https://platoniq.github.io/decidim-install/decidim-aws/#3-initialize-elasticbeanstalk)に従って環境を作る
 
-
 [Dockerrun.aws.json](./deployment/Dockerrun.aws.json)の`{RepositoryName}`をECRのデプロイしたいイメージパスに修正。作成したい環境の設定をコピー。
 
 [deployments/.elasticbeanstalk/config.yml](deployments/.elasticbeanstalk/config.yml)に設定があるので、基本的に何も聞かれないはずです。
@@ -103,7 +102,7 @@ cd deployments
 
 // production
 cp deployments/production/00_options.config .ebextensions/00_options.config
-// staging(台数とかインスタンスタイプが小さい)
+// staging(台数とかログの保持期間が小さい)
 cp deployments/staging/00_options.config .ebextensions/00_options.config
 
 eb create production
@@ -141,6 +140,8 @@ Elastic Beanstalk のインスタンスをAレコードとして割り当てる
 ## 9. REDIS の設定をする
 
 [6.5 Configure the job system with Sidekiq and Redis](https://platoniq.github.io/decidim-install/decidim-aws/#65-configure-the-job-system-with-sidekiq-and-redis)
+
+hookでsidekiqの設定をする必要はありません。dockerでデプロイされています。
 
 stagingはcloud formationで作成しています。
 
