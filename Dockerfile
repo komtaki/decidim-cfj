@@ -1,6 +1,6 @@
-FROM node:10.23.0-alpine as node
+FROM node:10.23.0-alpine3.11 as node
 
-FROM ruby:2.6.6-alpine
+FROM ruby:2.6.6-alpine3.11
 
 RUN apk update \
     && apk add --no-cache --virtual build-dependencies \
@@ -8,6 +8,7 @@ RUN apk update \
         curl-dev \
         git \
     && apk add --no-cache  \
+        icu-dev \
         imagemagick \
         postgresql-dev \
         tzdata \
@@ -66,6 +67,3 @@ RUN ./bin/rails assets:precompile \
 ENTRYPOINT ["entrypoint"]
 
 EXPOSE 3000
-
-# supervisor 起動
-CMD ["/usr/bin/supervisord"]
