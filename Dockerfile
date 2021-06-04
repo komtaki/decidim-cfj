@@ -7,9 +7,16 @@ RUN apk update \
         build-base \
         curl-dev \
         git \
-    && apk add --no-cache  \
+    && apk add --no-cache \
+        gcc \
         icu-dev \
         imagemagick \
+        libc-dev \
+        libxml2-dev \
+        libxslt-dev \
+        linux-headers \
+        make \
+        postgresql \
         postgresql-dev \
         tzdata \
         zip \
@@ -67,3 +74,5 @@ RUN ./bin/rails assets:precompile \
 ENTRYPOINT ["entrypoint"]
 
 EXPOSE 3000
+
+CMD ["/usr/bin/supervisord"]

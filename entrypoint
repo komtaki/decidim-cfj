@@ -3,6 +3,4 @@ set -e
 
 rm -f /app/tmp/pids/server.pid
 
-/usr/bin/supervisord
-
 exec "$@"
