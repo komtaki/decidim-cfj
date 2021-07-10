@@ -15,7 +15,7 @@ production: [deployments/production](deployments/production)
 
 GUIの設定とコードの書き方は、[公式](https://docs.aws.amazon.com/ja_jp/elasticbeanstalk/latest/dg/command-options-general.html#command-options-general-elasticbeanstalkapplicationenvironment)を参考にしてください。
 
-環境変数は環境別に設定する値だけ、[deployments/production/00_options.config](deployments/production/00_options.config) or [deployments/staging/00_options.config](deployments/staging/00_options.config)に記載して下さい。
+環境変数は環境別に設定する値だけ、[deployments/production/00_env_options.config](deployments/production/00_env_options.config) or [deployments/staging/00_env_options.config](deployments/staging/00_env_options.config)に記載して下さい。
 
 秘密鍵などのSSM経由で参照される値は、デプロイ時に動的に展開されます。
 
@@ -109,9 +109,9 @@ bundle install
 cd deployments
 
 # production
-cp production/00_options.config .ebextensions/00_options.config
+cp production/*.config .ebextensions/
 # staging(台数とかログの保持期間が小さい)
-cp staging/00_options.config .ebextensions/00_options.config
+cp staging/*.config .ebextensions/
 
 eb create production --process
 ```
